@@ -1,0 +1,23 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Liste des hackathons{% endblock %}
+
+{% block body %}
+<link href="https://unpkg.com/bootstrap-table@1.19.0/dist/bootstrap-table.min.css" rel="stylesheet">
+
+<table 
+  data-pagination="true" 
+  data-search="true" 
+  data-toggle="table" 
+  data-url="data1.json">
+  <thead>
+    <tr>
+      <th data-sortable="true" data-field="id">Item ID</th>
+      <th data-field="name">Item Name</th>
+      <th data-field="price">Item Price</th>
+    </tr>
+  </thead>
+</table>
+
+
+{% endblock %}
