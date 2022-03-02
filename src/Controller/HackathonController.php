@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\Hackathon;
 use App\Service\PdoHackathons;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
@@ -18,4 +19,16 @@ class HackathonController extends AbstractController
             'hackathon' => $pdo -> getLesHackathons(),
         ]);
     }
+
+    /**
+     * @Route("/hackathon/inscription", name="inscriptionH")
+     */
+    public function inscriptionH(): Response
+    {
+        $repository = $this->getDoctrine()->getRepository(Hackathon::class);
+        $hackathon = $repository->findAll();
+        return $this->render('InscriptionHackathon/index.html.twig', ['leshackathons'=>$hackathon]);
+    }
+
+    
 }
