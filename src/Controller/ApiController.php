@@ -92,9 +92,9 @@ class ApiController extends AbstractController
 }
 
  /**
-      * @Route("/apiE/participant", name="participant", methods="POST")
+      * @Route("/apiE/participant/{id}", name="participant", methods="POST")
       */
-      public function newserie(Request $request, PdoHackathons $monPdo)
+      public function newParticipant(Request $request, PdoHackathons $monPdo)
       {
           $content = $request ->getContent();
           if(!empty($content))
@@ -102,9 +102,7 @@ class ApiController extends AbstractController
             $tabd = json_decode($content, true) ;
             $p = new Participantevenement($tabd);
             $monPdo -> setParticipation($p);
-         }          
-              
-              
+         }            
           return new JsonResponse($tabd, Response::HTTP_CREATED);
       }
 }
