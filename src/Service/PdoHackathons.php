@@ -80,4 +80,14 @@ class PdoHackathons
 		$res -> bindValue(':IdEvenement',$p->getIdevenement());
 		$res -> execute();
 	   }
+
+	public function setParticipationH($idH,$idP,$Date){
+
+	$req = "insert into participation(IdHackathon, IdParticipant, DateInscription) values(:idH,:idP,:Date)";
+	$res = PdoHackathons::$monPdo->prepare($req);
+	$res -> bindValue(':idH',$idH);
+	$res -> bindValue(':idP',$idP);
+	$res -> bindValue(':Date',$Date);
+	$res -> execute();
+	}
 }

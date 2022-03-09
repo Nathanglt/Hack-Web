@@ -9,7 +9,7 @@
 <div class="list-group">
   
     {% for h in leshackathons %}
-  <a href="" class="list-group-item list-group-item-action">{{ h.theme|e }}</a>
+   <a href="{{path('inscriptionH',{'idH':h.idHackathon,'idP':h.idHackathon})}}" class="list-group-item list-group-item-action">S'incrire à {{ h.theme|e }}</a> 
 </div>
 
   {% endfor %}
