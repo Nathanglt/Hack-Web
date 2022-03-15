@@ -30,5 +30,13 @@ class HackathonController extends AbstractController
         return $this->render('InscriptionHackathon/index.html.twig', ['leshackathons'=>$hackathon]);
     }
 
-    
+     /**
+     * @Route("/hackathon", name="hackathonCard")
+     */
+    public function hackathonCard(): Response
+    {
+        $repository = $this->getDoctrine()->getRepository(Hackathon::class);
+        $hackathon = $repository->findAll();
+        return $this->render('hackathon/index.html.twig', ['leshackathons'=>$hackathon]);
+    }
 }
