@@ -40,13 +40,13 @@ class CreationController extends AbstractController
 
 
     /**
-     * @Route("/inscriptionH/{idH}", name="inscriptionH")
+     * @Route("/inscriptionH/{id}", name="inscriptionH")
      */
-    public function inscriptionH($idH,$idP): Response
+    public function inscriptionH($id): Response
     {
         $participation = new Participation();
-        $participation->setIdhackathon($idH);
-        $participation->setIdparticipant($idP);
+        $participation->setIdhackathon($id);
+        $participation->setIdparticipant($id);
         // $participation->setDateinscription(date("D, d M Y H:i:s"));
         $entityManager = $this->getDoctrine()->getManager();
         $entityManager->persist($participation);
@@ -55,20 +55,20 @@ class CreationController extends AbstractController
        
     }
 
-    /**
-     * @Route("/inscriptionH/{idH}", name="test")
-     */
-    public function test($idH,$idP): Response
-    {
-        $participation = new Participation();
-        $participation->setIdhackathon('1');
-        $participation->setIdparticipant('2');
-        // $participation->setDateinscription(date("D, d M Y H:i:s"));
-        $entityManager = $this->getDoctrine()->getManager();
-        $entityManager->persist($participation);
-        $entityManager->flush();
-        return $this->render('home/index.html.twig');
+    // /**
+    //  * @Route("/inscriptionH/{idH}", name="test")
+    //  */
+    // public function test($idH,$idP): Response
+    // {
+    //     $participation = new Participation();
+    //     $participation->setIdhackathon('1');
+    //     $participation->setIdparticipant('2');
+    //     // $participation->setDateinscription(date("D, d M Y H:i:s"));
+    //     $entityManager = $this->getDoctrine()->getManager();
+    //     $entityManager->persist($participation);
+    //     $entityManager->flush();
+    //     return $this->render('home/index.html.twig');
        
-    }
+    // }
 
 }

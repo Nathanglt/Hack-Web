@@ -1,11 +1,10 @@
 {% extends 'base.html.twig' %}
 
-{% block stylesheets %}
-	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css">
+{% block javascripts %}
+	<script src="https://kit.fontawesome.com/f84e5ee0a5.js" crossorigin="anonymous"></script>
 {% endblock %}
 
-{% block title %}
-{% endblock %}
+{% block title %}{% endblock %}
 
 {% block body %}
 	<style>
@@ -20,17 +19,17 @@
 			padding: 2px 6px;
 		}
 	</style>
-
 	<div class="example-wrapper">
-	{% for h in leshackathons %}
-
-			<div class="card" style="width: 18rem;">
+		{% for h in leshackathons %}
+			<div class="card">
 				<img src={{h.image}} class="card-img-top">
 				<div class="card-body">
-					<h5 class="card-title">{{h.titre}}</h5>
-					<i class="fa-solid fa-heart"></i>
-
-					{# <a href="{{path('serie',{'id':uneSerie.id})}}" class="btn btn-primary">Détails</a> #}
+					<h5 class="card-title">{{h.theme}}</h5>
+					<a href="{{path('unHackathon',{'id':h.idhackathon})}}" class="btn btn-primary">
+						<i class="fa-solid fa-circle-info"></i>
+						Détails</a>
+					<a href="{{path('unHackathon',{'id':h.idhackathon})}}" postion="right">
+						<i class="fa-solid fa-heart"></i>Ajouter en favoris</a>
 				</div>
 			{% endfor %}
 		</div>

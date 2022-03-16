@@ -10,33 +10,47 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class HackathonController extends AbstractController
 {
-    /**
-     * @Route("/hackathon", name="hackathon")
-     */
-    public function index(PdoHackathons $pdo): Response
-    {
-        return $this->render('hackathon/index.html.twig', [
-            'hackathon' => $pdo -> getLesHackathons(),
-        ]);
-    }
+    // /**
+    //  * @Route("/hackathon", name="hackathon")
+    //  */
+    // public function index(PdoHackathons $pdo): Response
+    // {
+    //     return $this->render('hackathon/index.html.twig', [
+    //         'hackathon' => $pdo -> getLesHackathons(),
+    //     ]);
+    // }
 
     /**
-     * @Route("/hackathon/inscription", name="inscriptionH")
+     * @Route("/hackathon", name="cardH")
      */
-    public function inscriptionH(): Response
-    {
-        $repository = $this->getDoctrine()->getRepository(Hackathon::class);
-        $hackathon = $repository->findAll();
-        return $this->render('InscriptionHackathon/index.html.twig', ['leshackathons'=>$hackathon]);
-    }
-
-     /**
-     * @Route("/hackathon", name="hackathonCard")
-     */
-    public function hackathonCard(): Response
+    public function cardH(): Response
     {
         $repository = $this->getDoctrine()->getRepository(Hackathon::class);
         $hackathon = $repository->findAll();
         return $this->render('hackathon/index.html.twig', ['leshackathons'=>$hackathon]);
     }
+
+     /**
+     * @Route("/hackathon/{id}", name="unHackathon")
+     */
+    public function unHackathon($id): Response
+    {
+        $repository = $this->getDoctrine()->getRepository(Hackathon::class);
+        $h = $repository->find($id);
+        return $this->render('hackathon/unHackathon.html.twig', [
+            'h' => $h
+
+        ]);
+    }
+
+    /**
+     * @Route("/recherche", name="recherche")
+     */
+    public function recherche(): Response
+    {
+        return $this->render('hackathon\recherche.html.twig', [
+            'controller_name' => 'HackathonController',
+        ]);
+    }
+
 }
