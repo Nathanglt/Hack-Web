@@ -40,14 +40,14 @@ class CreationController extends AbstractController
 
 
     /**
-     * @Route("/inscriptionH/{id}", name="inscriptionH")
+     * @Route("inscriptionH/{id}", name="inscriptionH")
      */
     public function inscriptionH($id): Response
     {
         $participation = new Participation();
-        $participation->setIdhackathon($id);
-        $participation->setIdparticipant($id);
-        // $participation->setDateinscription(date("D, d M Y H:i:s"));
+        $participation->setIdhackathon($this->getDoctrine()->getRepository(Hackathon::class)->find($id));
+        $participation->setIdparticipant($this -> getUser());
+        $participation->setDateinscription(new \DateTime(date("D, d M Y H:i:s")));
         $entityManager = $this->getDoctrine()->getManager();
         $entityManager->persist($participation);
         $entityManager->flush();
@@ -55,20 +55,5 @@ class CreationController extends AbstractController
        
     }
 
-    // /**
-    //  * @Route("/inscriptionH/{idH}", name="test")
-    //  */
-    // public function test($idH,$idP): Response
-    // {
-    //     $participation = new Participation();
-    //     $participation->setIdhackathon('1');
-    //     $participation->setIdparticipant('2');
-    //     // $participation->setDateinscription(date("D, d M Y H:i:s"));
-    //     $entityManager = $this->getDoctrine()->getManager();
-    //     $entityManager->persist($participation);
-    //     $entityManager->flush();
-    //     return $this->render('home/index.html.twig');
-       
-    // }
-
+  
 }
