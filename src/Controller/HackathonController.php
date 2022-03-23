@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\Hackathon;
 use App\Service\PdoHackathons;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
@@ -9,13 +10,47 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class HackathonController extends AbstractController
 {
+    // /**
+    //  * @Route("/hackathon", name="hackathon")
+    //  */
+    // public function index(PdoHackathons $pdo): Response
+    // {
+    //     return $this->render('hackathon/index.html.twig', [
+    //         'hackathon' => $pdo -> getLesHackathons(),
+    //     ]);
+    // }
+
     /**
-     * @Route("/hackathon", name="hackathon")
+     * @Route("/hackathon", name="cardH")
      */
-    public function index(PdoHackathons $pdo): Response
+    public function cardH(): Response
     {
-        return $this->render('hackathon/index.html.twig', [
-            'hackathon' => $pdo -> getLesHackathons(),
+        $repository = $this->getDoctrine()->getRepository(Hackathon::class);
+        $hackathon = $repository->findAll();
+        return $this->render('hackathon/index.html.twig', ['leshackathons'=>$hackathon]);
+    }
+
+     /**
+     * @Route("/hackathon/{id}", name="unHackathon")
+     */
+    public function unHackathon($id): Response
+    {
+        $repository = $this->getDoctrine()->getRepository(Hackathon::class);
+        $h = $repository->find($id);
+        return $this->render('hackathon/unHackathon.html.twig', [
+            'h' => $h
+
         ]);
     }
+
+    /**
+     * @Route("/recherche", name="recherche")
+     */
+    public function recherche(): Response
+    {
+        return $this->render('hackathon\recherche.html.twig', [
+            'controller_name' => 'HackathonController',
+        ]);
+    }
+
 }

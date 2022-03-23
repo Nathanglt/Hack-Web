@@ -1,0 +1,23 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Ajouter une série{% endblock %}
+
+{% block body %}
+<style>
+    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
+    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
+</style>
+
+<div class="container">
+    {{form_start(monForm)}}
+  {{form_row(monForm.nom)}}
+{{form_row(monForm.prenom)}}
+{{form_row(monForm.mail)}}
+{{form_row(monForm.telephone)}}
+{{form_row(monForm.datedenaissance)}}
+{{form_row(monForm.lienportfolio)}}
+{{form_row(monForm.password)}}
+<input type="submit" value="sauvegarder">
+    {{form_end(monForm)}}
+</div>
+{% endblock %}

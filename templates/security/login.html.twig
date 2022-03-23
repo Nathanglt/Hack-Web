@@ -1,11 +1,18 @@
 {% extends 'base.html.twig' %}
 {% block body %}
  <form action="{{ path('security_login') }}" method="post">
- <label for="login">Login:</label>
- <input type="text" id="login" name="_username" value="{{ last_username
+  <label for="login">Login:</label>
+ <input type="text" class="form-control" id="login" name="_username" value="{{ last_username
 }}"/>
+
  <label for="password">Password:</label>
- <input type="password" id="password" name="_password"/>
- <button type="submit">login</button>
+ <input type="password" class="form-control" id="password" name="_password"/>
+ <button type="submit">login</button> 
+ 
+ <button type="submit" class="btn btn-outline-secondary">Se connecter</button>
  </form>
+<a type="button" class="btn btn-outline-primary" href="{{path('creationCompte')}}">
+		Inscription
+</a>
+				
 {% endblock %}

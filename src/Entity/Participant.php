@@ -69,7 +69,7 @@ class Participant implements UserInterface
      *
      * @ORM\Column(name="Mdp", type="string", length=256, nullable=false)
      */
-    private $mdp;
+    private $password;
 
     public function getIdparticipant(): ?int
     {
@@ -150,12 +150,12 @@ class Participant implements UserInterface
 
     public function getPassword(): ?string
     {
-        return $this->mdp;
+        return $this->password;
     }
 
-    public function setPassword(string $mdp): self
+    public function setPassword(string $password): self
     {
-        $this->mdp = $mdp;
+        $this->password = $password;
 
         return $this;
     }

@@ -1,0 +1,17 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Inscription Hackathon
+{% endblock %}
+
+{% block body %}
+
+<h3><br>Inscription Hackathon<br></h3>
+<div class="list-group">
+  
+    {% for h in leshackathons %}
+   <a href="{{path('inscriptionH',{'idH':h.idHackathon,'idP':h.idHackathon})}}" class="list-group-item list-group-item-action">S'incrire à {{ h.theme|e }}</a> 
+</div>
+
+  {% endfor %}
+
+{% endblock %}

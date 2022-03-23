@@ -56,20 +56,38 @@ class PdoHackathons
 		return $evenement;
 	}
 
-	function getUnEvenement($id)
+	function getEvenement($id)
 	{
-		$req = "SELECT * FROM evenement where id=:idHackathon";
+		$req = "sELECT * FROM evenement where idhackathon=:id";
 		$res = PdoHackathons::$monPdo->prepare($req);
-		$res->bindParam(':idHackathon',$id);
+		$res->bindParam(':id',$id);
 		$res->execute();
-		$laLigne = $res->fetch();
-		 if ($laLigne==false){
-			$evenement = null;
-		 } 
-		 else{
-			$evenement = new Evenement ($laLigne);
-		 } 
+		$lesLignes = $res->fetchAll();
+		$evenement = [];
+		foreach ($lesLignes as $uneLigne) {
+			$evenement[] = new Evenement($uneLigne);
+		}
 
 		return $evenement;
+	}
+	public function setParticipation($p){
+
+		$req = "insert into participationevenement(nom, prenom, Mail, IdEvenement) values(:nom,:prenom,:Mail,:IdEvenement)";
+		$res = PdoHackathons::$monPdo->prepare($req);
+		$res -> bindValue(':nom',$p->getNom());
+		$res -> bindValue(':prenom',$p->getPrenom());
+		$res -> bindValue(':Mail',$p->getMail());
+		$res -> bindValue(':IdEvenement',$p->getIdevenement());
+		$res -> execute();
+	   }
+
+	public function setParticipationH($idH,$idP,$Date){
+
+	$req = "insert into participation(IdHackathon, IdParticipant, DateInscription) values(:idH,:idP,:Date)";
+	$res = PdoHackathons::$monPdo->prepare($req);
+	$res -> bindValue(':idH',$idH);
+	$res -> bindValue(':idP',$idP);
+	$res -> bindValue(':Date',$Date);
+	$res -> execute();
 	}
 }

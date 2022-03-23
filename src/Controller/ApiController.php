@@ -4,8 +4,10 @@ namespace App\Controller;
 
 use App\Entity\Hackathons;
 use App\Entity\Participant;
+use App\Entity\Participantevenement;
 use App\Service\PdoHackathons;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Response;
@@ -63,17 +65,18 @@ class ApiController extends AbstractController
     }
 
 /**
-     * @Route("/apiE/{id}", name="apiE", methods="GET")
+     * @Route("/apiE/{id}", name="apiE_id", methods="GET")
      */
-    public function getUnEvenement(PdoHackathons $monPdo, $id): JsonResponse
+    public function getEvenement(PdoHackathons $monPdo, $id): JsonResponse
     {
       
-        $unEvenement = $monPdo->getUnEvenement($id);
-        var_dump($unEvenement);
-        if(empty($unEvenement))
+        $lesEvenements = $monPdo->getEvenement($id);
+        $tabJson=[];
+        if(empty($lesEvenements))
         {
             return new JsonResponse(['message' => 'Pas trouve'],Response::HTTP_NOT_FOUND);
-        }          
+        } 
+        foreach ($lesEvenements as $unEvenement){         
         $tabJson[]=[
             'IdEvenement'=>$unEvenement->getIdEvenement(),
             'Theme'=>$unEvenement->getTheme(),
@@ -83,7 +86,24 @@ class ApiController extends AbstractController
             'IdHackathon '=>$unEvenement->getIdHackathon(),
             'TypeEvenement'=>$unEvenement->getIdtypeevenement(),
         ];
-        return new JsonResponse($tabJson);
+        
     }
+    return new JsonResponse($tabJson);
+}
 
+ /**
+      * @Route("/apiE/participant", name="participant", methods="POST")
+      */
+      public function newParticipant(Request $request, PdoHackathons $monPdo)
+      {
+          $content = $request->getContent();
+          dump($content);
+          if(!empty($content))
+         {
+            $tabd = json_decode($content, true) ;
+            $p = new Participantevenement($tabd);
+            $monPdo -> setParticipation($p);
+         }            
+          return new JsonResponse(Response::HTTP_ACCEPTED);
+      }
 }
