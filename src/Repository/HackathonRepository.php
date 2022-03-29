@@ -56,4 +56,13 @@ class HackathonRepository extends ServiceEntityRepository
 
         ;
     }
+
+    public function updateNbPlaces($id): ?Hackathon
+    {
+        return $this->createQuery('SELECT (hackathon.NbPlaces - COUNT(IdParticipation))  FROM participation 
+        INNER JOIN hackathon ON participation.IdHackathon = hackathon.IdHackathon
+        WHERE hackathon.IdHackathon = '.$id)
+        ->getResult();
+        ;
+    }
 }
