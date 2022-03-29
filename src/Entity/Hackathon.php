@@ -8,7 +8,7 @@ use Doctrine\ORM\Mapping as ORM;
  * Hackathon
  *
  * @ORM\Table(name="hackathon")
- * @ORM\Entity(repositoryClass=App\Repository\HackathonRepository::class)
+ * @ORM\Entity
  */
 class Hackathon
 {
@@ -110,19 +110,12 @@ class Hackathon
         return $this->idhackathon;
     }
 
-    public function setIdhackathon( $idhackathon): self
-    {
-        $this->idhackathon = $idhackathon;
-
-        return $this;
-    }
-
     public function getDatedebut()
     {
         return $this->datedebut;
     }
 
-    public function setDatedebut( $datedebut): self
+    public function setDatedebut($datedebut): self
     {
         $this->datedebut = $datedebut;
 
@@ -146,7 +139,7 @@ class Hackathon
         return $this->datefin;
     }
 
-    public function setDatefin( $datefin): self
+    public function setDatefin($datefin): self
     {
         $this->datefin = $datefin;
 
@@ -158,7 +151,7 @@ class Hackathon
         return $this->heurefin;
     }
 
-    public function setHeurefin( $heurefin): self
+    public function setHeurefin($heurefin): self
     {
         $this->heurefin = $heurefin;
 
@@ -279,5 +272,6 @@ class Hackathon
 public function __construct(array $donnees){
     $this->hydrate($donnees);
 }
-}
 
+
+}
