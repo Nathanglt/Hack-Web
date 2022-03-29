@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * Participation
  *
- * @ORM\Table(name="participation", indexes={@ORM\Index(name="IdParticipant", columns={"IdParticipant"}), @ORM\Index(name="Participation_ibfk_1", columns={"IdHackathon"})})
+ * @ORM\Table(name="participation", indexes={@ORM\Index(name="Participation_ibfk_1", columns={"IdHackathon"}), @ORM\Index(name="Participation_ibfk_2", columns={"IdParticipant"})})
  * @ORM\Entity
  */
 class Participation
@@ -70,7 +70,7 @@ class Participation
         return $this->idhackathon;
     }
 
-    public function setIdhackathon(?Hackathon $idhackathon): self
+    public function setIdhackathon($idhackathon): self
     {
         $this->idhackathon = $idhackathon;
 
@@ -82,7 +82,7 @@ class Participation
         return $this->idparticipant;
     }
 
-    public function setIdparticipant(?Participant $idparticipant): self
+    public function setIdparticipant($idparticipant): self
     {
         $this->idparticipant = $idparticipant;
 

@@ -14,7 +14,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Mime\Message;
 use Symfony\Component\VarDumper\VarDumper;
-use App\Repository;
+use App\Repository\HackathonRepository;
 
 class CreationController extends AbstractController
 {
@@ -54,7 +54,7 @@ class CreationController extends AbstractController
         $entityManager->flush();
 
         $repository = $this->getDoctrine()->getRepository(Hackathon::class);
-        $nb = $repository->updateNbPlaces($id);
+        $nb = $repository->findNbPlaces($id);
         var_dump($nb);
 
 

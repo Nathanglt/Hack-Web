@@ -58,7 +58,7 @@ class ApiController extends AbstractController
                 'HeureDebut'=>$unEvenement->getHeureDebut(),
                 'HeureFin'=>$unEvenement->getHeureFin(),
                 'IdHackathon '=>$unEvenement->getIdHackathon(),
-                'TypeEvenement'=>$unEvenement->getIdtypeevenement(),
+                'Typeevenement'=>$unEvenement->getIdtypeevenement(),
             ];
         }
         return new JsonResponse($tabJson);
@@ -84,7 +84,7 @@ class ApiController extends AbstractController
             'HeureDebut'=>$unEvenement->getHeureDebut(),
             'HeureFin'=>$unEvenement->getHeureFin(),
             'IdHackathon '=>$unEvenement->getIdHackathon(),
-            'TypeEvenement'=>$unEvenement->getIdtypeevenement(),
+            'Typeevenement'=>$unEvenement->getIdtypeevenement(),
         ];
         
     }

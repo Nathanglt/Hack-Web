@@ -52,17 +52,14 @@ class HackathonRepository extends ServiceEntityRepository
     {
         return $this->createQueryBuilder('s')
             ->getQuery()
-            ->getResult();
-
-        ;
+            ->getResult();;
     }
 
-    public function updateNbPlaces($id): ?Hackathon
+    public function findNbPlaces($id): ?Hackathon
     {
         return $this->createQuery('SELECT (hackathon.NbPlaces - COUNT(IdParticipation))  FROM participation 
         INNER JOIN hackathon ON participation.IdHackathon = hackathon.IdHackathon
-        WHERE hackathon.IdHackathon = '.$id)
-        ->getResult();
-        ;
+        WHERE hackathon.IdHackathon = ' . $id)
+            ->getResult();;
     }
 }
