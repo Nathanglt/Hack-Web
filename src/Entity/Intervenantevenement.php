@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Entity;
+namespace App\Entity\Favori;
 
 use Doctrine\ORM\Mapping as ORM;
 
@@ -22,44 +22,50 @@ class Intervenantevenement
     private $idie;
 
     /**
-     * @var int
+     * @var \Evenement
      *
-     * @ORM\Column(name="IdIntervenant", type="integer", nullable=false)
-     */
-    private $idintervenant;
-
-    /**
-     * @var int
-     *
-     * @ORM\Column(name="IdEvenement", type="integer", nullable=false)
+     * @ORM\ManyToOne(targetEntity="Evenement")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="IdEvenement", referencedColumnName="IdEvenement")
+     * })
      */
     private $idevenement;
+
+    /**
+     * @var \Intervenant
+     *
+     * @ORM\ManyToOne(targetEntity="Intervenant")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="IdIntervenant", referencedColumnName="IdIntervenant")
+     * })
+     */
+    private $idintervenant;
 
     public function getIdie(): ?int
     {
         return $this->idie;
     }
 
-    public function getIdintervenant(): ?int
-    {
-        return $this->idintervenant;
-    }
-
-    public function setIdintervenant(int $idintervenant): self
-    {
-        $this->idintervenant = $idintervenant;
-
-        return $this;
-    }
-
-    public function getIdevenement(): ?int
+    public function getIdevenement(): ?Evenement
     {
         return $this->idevenement;
     }
 
-    public function setIdevenement(int $idevenement): self
+    public function setIdevenement(?Evenement $idevenement): self
     {
         $this->idevenement = $idevenement;
+
+        return $this;
+    }
+
+    public function getIdintervenant(): ?Intervenant
+    {
+        return $this->idintervenant;
+    }
+
+    public function setIdintervenant(?Intervenant $idintervenant): self
+    {
+        $this->idintervenant = $idintervenant;
 
         return $this;
     }

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Entity;
+namespace App\Entity\Favori;
 
 use Doctrine\ORM\Mapping as ORM;
 
@@ -22,16 +22,22 @@ class Favori
     private $idfavori;
 
     /**
-     * @var int
+     * @var \Hackathon
      *
-     * @ORM\Column(name="IdHackathon", type="integer", nullable=false)
+     * @ORM\ManyToOne(targetEntity="Hackathon")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="IdHackathon", referencedColumnName="IdHackathon")
+     * })
      */
     private $idhackathon;
 
     /**
-     * @var int
+     * @var \Participant
      *
-     * @ORM\Column(name="IdParticipant", type="integer", nullable=false)
+     * @ORM\ManyToOne(targetEntity="Participant")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="IdParticipant", referencedColumnName="IdParticipant")
+     * })
      */
     private $idparticipant;
 

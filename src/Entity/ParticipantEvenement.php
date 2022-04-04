@@ -1,13 +1,13 @@
 <?php
 
-namespace App\Entity;
+namespace App\Entity\Favori;
 
 use Doctrine\ORM\Mapping as ORM;
 
 /**
  * Participantevenement
  *
- * @ORM\Table(name="Participantevenement", indexes={@ORM\Index(name="ParticipantEvenement_ibfk_1", columns={"IdEvenement"})})
+ * @ORM\Table(name="participantevenement", indexes={@ORM\Index(name="ParticipantEvenement_ibfk_1", columns={"IdEvenement"})})
  * @ORM\Entity
  */
 class Participantevenement
@@ -93,12 +93,12 @@ class Participantevenement
         return $this;
     }
 
-    public function getIdevenement()
+    public function getIdevenement(): ?Evenement
     {
         return $this->idevenement;
     }
 
-    public function setIdevenement($idevenement): self
+    public function setIdevenement(?Evenement $idevenement): self
     {
         $this->idevenement = $idevenement;
 

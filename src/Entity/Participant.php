@@ -1,9 +1,8 @@
 <?php
 
-namespace App\Entity;
+namespace App\Entity\Favori;
 
 use Doctrine\ORM\Mapping as ORM;
-use Symfony\Component\Security\Core\User\UserInterface;
 
 /**
  * Participant
@@ -11,7 +10,7 @@ use Symfony\Component\Security\Core\User\UserInterface;
  * @ORM\Table(name="participant")
  * @ORM\Entity
  */
-class Participant implements UserInterface
+class Participant
 {
     /**
      * @var int
@@ -69,7 +68,7 @@ class Participant implements UserInterface
      *
      * @ORM\Column(name="Mdp", type="string", length=256, nullable=false)
      */
-    private $password;
+    private $mdp;
 
     public function getIdparticipant(): ?int
     {
@@ -148,57 +147,17 @@ class Participant implements UserInterface
         return $this;
     }
 
-    public function getPassword(): ?string
+    public function getMdp(): ?string
     {
-        return $this->password;
+        return $this->mdp;
     }
 
-    public function setPassword(string $password): self
+    public function setMdp(string $mdp): self
     {
-        $this->password = $password;
+        $this->mdp = $mdp;
 
         return $this;
     }
 
 
-    private $roles = [];
-    /**
-     * A visual identifier that represents this user.
-     * @see UserInterface
-     */
-
-    public function getUsername(): string
-    {
-        return (string) $this->mail;
-    }
-    public function getRoles(): array
-    {
-        $roles = $this->roles;
-        // guarantee every user at least has ROLE_USER
-        $roles[] = 'ROLE_USER';
-        return array_unique($roles);
-    }
-    public function setRoles(array $roles): self
-    {
-        $this->roles = $roles;
-        return $this;
-    }
-    /**
-     * Returning a salt is only needed, if you are not using a modern
-     * hashing algorithm (e.g. bcrypt or sodium) in your security.yaml.
-     *
-     * @see UserInterface
-     */
-    public function getSalt(): ?string
-    {
-        return null;
-    }
-    /**
-     * @see UserInterface
-     */
-    public function eraseCredentials()
-    {
-        // If you store any temporary, sensitive data on the user, clear it here
-        // $this->plainPassword = null;
-    }
 }

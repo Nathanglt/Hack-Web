@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Entity;
+namespace App\Entity\Favori;
 
 use Doctrine\ORM\Mapping as ORM;
 
@@ -81,18 +81,10 @@ class Evenement
         return $this->idevenement;
     }
 
-    public function setIdevenement(string $idevenement): self
-    {
-        $this->idevenement = $idevenement;
-
-        return $this;
-    }
-
     public function getTheme(): ?string
     {
         return $this->theme;
     }
-    
 
     public function setTheme(string $theme): self
     {
@@ -101,36 +93,36 @@ class Evenement
         return $this;
     }
 
-    public function getDate()
+    public function getDate(): ?\DateTimeInterface
     {
         return $this->date;
     }
 
-    public function setDate($date): self
+    public function setDate(\DateTimeInterface $date): self
     {
         $this->date = $date;
 
         return $this;
     }
 
-    public function getHeuredebut()
+    public function getHeuredebut(): ?\DateTimeInterface
     {
         return $this->heuredebut;
     }
 
-    public function setHeuredebut( $heuredebut): self
+    public function setHeuredebut(\DateTimeInterface $heuredebut): self
     {
         $this->heuredebut = $heuredebut;
 
         return $this;
     }
 
-    public function getHeurefin()
+    public function getHeurefin(): ?\DateTimeInterface
     {
         return $this->heurefin;
     }
 
-    public function setHeurefin( $heurefin): self
+    public function setHeurefin(\DateTimeInterface $heurefin): self
     {
         $this->heurefin = $heurefin;
 
@@ -149,47 +141,29 @@ class Evenement
         return $this;
     }
 
-    public function getIdhackathon()
+    public function getIdhackathon(): ?Hackathon
     {
         return $this->idhackathon;
     }
 
-    public function setIdhackathon($idhackathon): self
+    public function setIdhackathon(?Hackathon $idhackathon): self
     {
         $this->idhackathon = $idhackathon;
 
         return $this;
     }
 
-    public function getIdtypeevenement()
+    public function getIdtypeevenement(): ?Typeevenement
     {
         return $this->idtypeevenement;
     }
 
-    public function setIdtypeevenement( $idtypeevenement): self
+    public function setIdtypeevenement(?Typeevenement $idtypeevenement): self
     {
         $this->idtypeevenement = $idtypeevenement;
 
         return $this;
     }
 
-    private function hydrate(array $donnees)
-    {
-  foreach ($donnees as $key => $value)
-  {
-    // On récupère le nom du setter correspondant à l'attribut.
-    $method = 'set'.ucfirst($key);
-
-    // Si le setter correspondant existe.
-    if (method_exists($this, $method))
-    {
-      // On appelle le setter.
-      $this->$method($value);
-    }
-  }
-}
-public function __construct(array $donnees){
-    $this->hydrate($donnees);
-}
 
 }

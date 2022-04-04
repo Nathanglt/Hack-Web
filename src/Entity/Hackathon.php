@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Entity;
+namespace App\Entity\Favori;
 
 use Doctrine\ORM\Mapping as ORM;
 
@@ -110,55 +110,48 @@ class Hackathon
         return $this->idhackathon;
     }
 
-    public function setIdhackathon($idhackathon): self
-    {
-        $this->idhackathon = $idhackathon;
-
-        return $this;
-    }
-
-    public function getDatedebut()
+    public function getDatedebut(): ?\DateTimeInterface
     {
         return $this->datedebut;
     }
 
-    public function setDatedebut($datedebut): self
+    public function setDatedebut(\DateTimeInterface $datedebut): self
     {
         $this->datedebut = $datedebut;
 
         return $this;
     }
 
-    public function getHeuredebut()
+    public function getHeuredebut(): ?\DateTimeInterface
     {
         return $this->heuredebut;
     }
 
-    public function setHeuredebut($heuredebut): self
+    public function setHeuredebut(?\DateTimeInterface $heuredebut): self
     {
         $this->heuredebut = $heuredebut;
 
         return $this;
     }
 
-    public function getDatefin()
+    public function getDatefin(): ?\DateTimeInterface
     {
         return $this->datefin;
     }
 
-    public function setDatefin($datefin): self
+    public function setDatefin(?\DateTimeInterface $datefin): self
     {
         $this->datefin = $datefin;
 
         return $this;
     }
 
-    public function getHeurefin()
+    public function getHeurefin(): ?\DateTimeInterface
     {
         return $this->heurefin;
     }
 
-    public function setHeurefin($heurefin): self
+    public function setHeurefin(?\DateTimeInterface $heurefin): self
     {
         $this->heurefin = $heurefin;
 
@@ -225,12 +218,12 @@ class Hackathon
         return $this;
     }
 
-    public function getDatelimite()
+    public function getDatelimite(): ?\DateTimeInterface
     {
         return $this->datelimite;
     }
 
-    public function setDatelimite($datelimite): self
+    public function setDatelimite(?\DateTimeInterface $datelimite): self
     {
         $this->datelimite = $datelimite;
 

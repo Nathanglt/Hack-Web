@@ -1,13 +1,13 @@
 <?php
 
-namespace App\Entity;
+namespace App\Entity\Favori;
 
 use Doctrine\ORM\Mapping as ORM;
 
 /**
  * Typeevenement
  *
- * @ORM\Table(name="Typeevenement")
+ * @ORM\Table(name="typeevenement")
  * @ORM\Entity
  */
 class Typeevenement

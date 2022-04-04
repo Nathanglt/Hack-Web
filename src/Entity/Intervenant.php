@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Entity;
+namespace App\Entity\Favori;
 
 use Doctrine\ORM\Mapping as ORM;
 
@@ -22,23 +22,23 @@ class Intervenant
     private $idintervenant;
 
     /**
-     * @var int
+     * @var string
      *
-     * @ORM\Column(name="Nom", type="integer", nullable=false)
+     * @ORM\Column(name="Nom", type="string", length=256, nullable=false)
      */
     private $nom;
 
     /**
-     * @var int
+     * @var string
      *
-     * @ORM\Column(name="Prenom", type="integer", nullable=false)
+     * @ORM\Column(name="Prenom", type="string", length=256, nullable=false)
      */
     private $prenom;
 
     /**
-     * @var int
+     * @var string
      *
-     * @ORM\Column(name="Mail", type="integer", nullable=false)
+     * @ORM\Column(name="Mail", type="string", length=256, nullable=false)
      */
     private $mail;
 
@@ -54,36 +54,36 @@ class Intervenant
         return $this->idintervenant;
     }
 
-    public function getNom(): ?int
+    public function getNom(): ?string
     {
         return $this->nom;
     }
 
-    public function setNom(int $nom): self
+    public function setNom(string $nom): self
     {
         $this->nom = $nom;
 
         return $this;
     }
 
-    public function getPrenom(): ?int
+    public function getPrenom(): ?string
     {
         return $this->prenom;
     }
 
-    public function setPrenom(int $prenom): self
+    public function setPrenom(string $prenom): self
     {
         $this->prenom = $prenom;
 
         return $this;
     }
 
-    public function getMail(): ?int
+    public function getMail(): ?string
     {
         return $this->mail;
     }
 
-    public function setMail(int $mail): self
+    public function setMail(string $mail): self
     {
         $this->mail = $mail;
 

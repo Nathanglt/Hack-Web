@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Entity;
+namespace App\Entity\Favori;
 
 use Doctrine\ORM\Mapping as ORM;
 
@@ -36,9 +36,12 @@ class Commentaire
     private $date;
 
     /**
-     * @var int
+     * @var \Hackathon
      *
-     * @ORM\Column(name="IdHackathon", type="integer", nullable=false)
+     * @ORM\ManyToOne(targetEntity="Hackathon")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="IdHackathon", referencedColumnName="IdHackathon")
+     * })
      */
     private $idhackathon;
 
@@ -71,12 +74,12 @@ class Commentaire
         return $this;
     }
 
-    public function getIdhackathon(): ?int
+    public function getIdhackathon(): ?Hackathon
     {
         return $this->idhackathon;
     }
 
-    public function setIdhackathon(int $idhackathon): self
+    public function setIdhackathon(?Hackathon $idhackathon): self
     {
         $this->idhackathon = $idhackathon;
 
