@@ -28,8 +28,11 @@
 					<a href="{{path('unHackathon',{'id':h.idhackathon})}}" class="btn btn-primary">
 						<i class="fa-solid fa-circle-info"></i>
 						Détails</a>
-					<a href="{{path('unHackathon',{'id':h.idhackathon})}}" postion="right">
-						<i class="fa-solid fa-heart"></i>Ajouter en favoris</a>
+					{% if is_granted('IS_AUTHENTICATED_FULLY') %}
+						<a href="{{path('favori',{'id':h.idhackathon})}}" postion="right">
+							<i class="fa-solid fa-heart"></i>Ajouter en favoris</a>
+					{% endif %}
+
 				</div>
 			{% endfor %}
 		</div>

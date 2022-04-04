@@ -4,6 +4,7 @@ namespace App\Repository;
 
 use App\Entity\Hackathon;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+use Doctrine\ORM\Query\AST\Join;
 use Doctrine\Persistence\ManagerRegistry;
 
 /**
@@ -55,11 +56,19 @@ class HackathonRepository extends ServiceEntityRepository
             ->getResult();;
     }
 
-    public function findNbPlaces($id): ?Hackathon
+    public function findByNbPlaces($id): ?Hackathon
     {
-        return $this->createQuery('SELECT (hackathon.NbPlaces - COUNT(IdParticipation))  FROM participation 
-        INNER JOIN hackathon ON participation.IdHackathon = hackathon.IdHackathon
-        WHERE hackathon.IdHackathon = ' . $id)
-            ->getResult();;
+        // return $this->createQuery('SELECT (hackathon.NbPlaces - COUNT(IdParticipation))  FROM participation 
+        // INNER JOIN participation ON participation.IdHackathon = hackathon.IdHackathon
+        // WHERE hackathon.IdHackathon = ' . $id)
+        //     ->getResult();
+
+            return $this->createQueryBuilder('h')
+            ->select('h.NbPlaces - COUNT(p.IdParticipation)')
+            ->innerJoin(Participation::class, 'p', Join::WITH, 'h.IdHackathon = p.IdHackathon')
+            ->andWhere('h.IdHackathon = :id')
+            ->setParameter('id', $id)
+            ->getQuery()
+            ->getResult();
     }
 }

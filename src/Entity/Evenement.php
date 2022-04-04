@@ -81,10 +81,18 @@ class Evenement
         return $this->idevenement;
     }
 
+    public function setIdevenement(string $idevenement): self
+    {
+        $this->idevenement = $idevenement;
+
+        return $this;
+    }
+
     public function getTheme(): ?string
     {
         return $this->theme;
     }
+    
 
     public function setTheme(string $theme): self
     {
@@ -93,36 +101,36 @@ class Evenement
         return $this;
     }
 
-    public function getDate(): ?\DateTimeInterface
+    public function getDate()
     {
         return $this->date;
     }
 
-    public function setDate(\DateTimeInterface $date): self
+    public function setDate($date): self
     {
         $this->date = $date;
 
         return $this;
     }
 
-    public function getHeuredebut(): ?\DateTimeInterface
+    public function getHeuredebut()
     {
         return $this->heuredebut;
     }
 
-    public function setHeuredebut(\DateTimeInterface $heuredebut): self
+    public function setHeuredebut( $heuredebut): self
     {
         $this->heuredebut = $heuredebut;
 
         return $this;
     }
 
-    public function getHeurefin(): ?\DateTimeInterface
+    public function getHeurefin()
     {
         return $this->heurefin;
     }
 
-    public function setHeurefin(\DateTimeInterface $heurefin): self
+    public function setHeurefin( $heurefin): self
     {
         $this->heurefin = $heurefin;
 
@@ -141,29 +149,30 @@ class Evenement
         return $this;
     }
 
-    public function getIdhackathon(): ?Hackathon
+    public function getIdhackathon()
     {
         return $this->idhackathon;
     }
 
-    public function setIdhackathon(?Hackathon $idhackathon): self
+    public function setIdhackathon($idhackathon): self
     {
         $this->idhackathon = $idhackathon;
 
         return $this;
     }
 
-    public function getIdtypeevenement(): ?Typeevenement
+    public function getIdtypeevenement()
     {
         return $this->idtypeevenement;
     }
 
-    public function setIdtypeevenement(?Typeevenement $idtypeevenement): self
+    public function setIdtypeevenement( $idtypeevenement): self
     {
         $this->idtypeevenement = $idtypeevenement;
 
         return $this;
     }
+
     private function hydrate(array $donnees)
     {
   foreach ($donnees as $key => $value)

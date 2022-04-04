@@ -110,6 +110,13 @@ class Hackathon
         return $this->idhackathon;
     }
 
+    public function setIdhackathon($idhackathon): self
+    {
+        $this->idhackathon = $idhackathon;
+
+        return $this;
+    }
+
     public function getDatedebut()
     {
         return $this->datedebut;
