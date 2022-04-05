@@ -1,8 +1,9 @@
 <?php
 
-namespace App\Entity\Favori;
+namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Security\Core\User\UserInterface;
 
 /**
  * Participant
@@ -10,7 +11,7 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\Table(name="participant")
  * @ORM\Entity
  */
-class Participant
+class Participant implements UserInterface
 {
     /**
      * @var int
@@ -68,7 +69,7 @@ class Participant
      *
      * @ORM\Column(name="Mdp", type="string", length=256, nullable=false)
      */
-    private $mdp;
+    private $password;
 
     public function getIdparticipant(): ?int
     {
@@ -147,17 +148,57 @@ class Participant
         return $this;
     }
 
-    public function getMdp(): ?string
+    public function getPassword(): ?string
     {
-        return $this->mdp;
+        return $this->password;
     }
 
-    public function setMdp(string $mdp): self
+    public function setPassword(string $password): self
     {
-        $this->mdp = $mdp;
+        $this->password = $password;
 
         return $this;
     }
 
 
+    private $roles = [];
+    /**
+     * A visual identifier that represents this user.
+     * @see UserInterface
+     */
+
+    public function getUsername(): string
+    {
+        return (string) $this->mail;
+    }
+    public function getRoles(): array
+    {
+        $roles = $this->roles;
+        // guarantee every user at least has ROLE_USER
+        $roles[] = 'ROLE_USER';
+        return array_unique($roles);
+    }
+    public function setRoles(array $roles): self
+    {
+        $this->roles = $roles;
+        return $this;
+    }
+    /**
+     * Returning a salt is only needed, if you are not using a modern
+     * hashing algorithm (e.g. bcrypt or sodium) in your security.yaml.
+     *
+     * @see UserInterface
+     */
+    public function getSalt(): ?string
+    {
+        return null;
+    }
+    /**
+     * @see UserInterface
+     */
+    public function eraseCredentials()
+    {
+        // If you store any temporary, sensitive data on the user, clear it here
+        // $this->plainPassword = null;
+    }
 }

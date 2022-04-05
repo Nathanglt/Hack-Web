@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Entity\Favori;
+namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 
@@ -8,7 +8,7 @@ use Doctrine\ORM\Mapping as ORM;
  * Hackathon
  *
  * @ORM\Table(name="hackathon")
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="App\Repository\HackathonRepository")
  */
 class Hackathon
 {
@@ -110,48 +110,48 @@ class Hackathon
         return $this->idhackathon;
     }
 
-    public function getDatedebut(): ?\DateTimeInterface
+    public function getDatedebut()
     {
         return $this->datedebut;
     }
 
-    public function setDatedebut(\DateTimeInterface $datedebut): self
+    public function setDatedebut($datedebut): self
     {
         $this->datedebut = $datedebut;
 
         return $this;
     }
 
-    public function getHeuredebut(): ?\DateTimeInterface
+    public function getHeuredebut()
     {
         return $this->heuredebut;
     }
 
-    public function setHeuredebut(?\DateTimeInterface $heuredebut): self
+    public function setHeuredebut($heuredebut): self
     {
         $this->heuredebut = $heuredebut;
 
         return $this;
     }
 
-    public function getDatefin(): ?\DateTimeInterface
+    public function getDatefin()
     {
         return $this->datefin;
     }
 
-    public function setDatefin(?\DateTimeInterface $datefin): self
+    public function setDatefin($datefin): self
     {
         $this->datefin = $datefin;
 
         return $this;
     }
 
-    public function getHeurefin(): ?\DateTimeInterface
+    public function getHeurefin()
     {
         return $this->heurefin;
     }
 
-    public function setHeurefin(?\DateTimeInterface $heurefin): self
+    public function setHeurefin($heurefin): self
     {
         $this->heurefin = $heurefin;
 
@@ -218,12 +218,12 @@ class Hackathon
         return $this;
     }
 
-    public function getDatelimite(): ?\DateTimeInterface
+    public function getDatelimite()
     {
         return $this->datelimite;
     }
 
-    public function setDatelimite(?\DateTimeInterface $datelimite): self
+    public function setDatelimite($datelimite): self
     {
         $this->datelimite = $datelimite;
 

@@ -37,6 +37,10 @@ class HackathonController extends AbstractController
     {
         $repository = $this->getDoctrine()->getRepository(Hackathon::class);
         $h = $repository->find($id);
+        if ($h==null)
+        {
+        throw $this->createNotFoundException('Hackathon inconnu');
+        }
         return $this->render('hackathon/unHackathon.html.twig', [
             'h' => $h
 

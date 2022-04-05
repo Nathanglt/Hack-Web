@@ -71,6 +71,6 @@ class CreationController extends AbstractController
         $entityManager->flush();
 
        
-        return $this->render('home/index.html.twig');
+        return $this->render('hackathon/unHackathon.html.twig');
     }
 }
