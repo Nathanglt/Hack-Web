@@ -57,6 +57,13 @@ class Participantevenement
         return $this->id;
     }
 
+    public function setId(int $id): self
+    {
+        $this->id = $id;
+
+        return $this;
+    }
+
     public function getNom(): ?string
     {
         return $this->nom;
@@ -93,17 +100,36 @@ class Participantevenement
         return $this;
     }
 
-    public function getIdevenement(): ?Evenement
+    public function getIdevenement()
     {
         return $this->idevenement;
     }
 
-    public function setIdevenement(?Evenement $idevenement): self
+    public function setIdevenement( $idevenement): self
     {
         $this->idevenement = $idevenement;
 
         return $this;
     }
+
+    private function hydrate(array $donnees)
+    {
+  foreach ($donnees as $key => $value)
+  {
+    // On récupère le nom du setter correspondant à l'attribut.
+    $method = 'set'.ucfirst($key);
+
+    // Si le setter correspondant existe.
+    if (method_exists($this, $method))
+    {
+      // On appelle le setter.
+      $this->$method($value);
+    }
+  }
+}
+public function __construct(array $donnees){
+    $this->hydrate($donnees);
+}
 
 
 }

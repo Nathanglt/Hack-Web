@@ -70,15 +70,18 @@ class PdoHackathons
 
 		return $evenement;
 	}
+
 	public function setParticipation($p){
 
-		$req = "insert into participationevenement(nom, prenom, Mail, IdEvenement) values(:nom,:prenom,:Mail,:IdEvenement)";
+		$req = "insert into participantevenement(Nom, Prenom, Mail, IdEvenement) values(:nom,:prenom,:Mail,:IdEvenement)";
 		$res = PdoHackathons::$monPdo->prepare($req);
 		$res -> bindValue(':nom',$p->getNom());
 		$res -> bindValue(':prenom',$p->getPrenom());
 		$res -> bindValue(':Mail',$p->getMail());
 		$res -> bindValue(':IdEvenement',$p->getIdevenement());
 		$res -> execute();
+		dump($req);
+		PdoHackathons::$monPdo->exec($req);
 	   }
 
 	public function setParticipationH($idH,$idP,$Date){

@@ -12,6 +12,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Mime\Message;
 
 class CreationController extends AbstractController
 {
@@ -54,7 +55,6 @@ class CreationController extends AbstractController
         $repository = $this->getDoctrine()->getRepository(Hackathon::class);
         $nb = $repository->findByNbPlaces($id);
         var_dump($nb);
-        // die;
         return $this->render('home/index.html.twig');
     }
 
@@ -70,7 +70,9 @@ class CreationController extends AbstractController
         $entityManager->persist($favori);
         $entityManager->flush();
 
-       
-        return $this->render('hackathon/unHackathon.html.twig');
+        return $this->render('home/index.html.twig', [
+
+        ]);
+        
     }
 }

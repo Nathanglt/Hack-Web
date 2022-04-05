@@ -101,7 +101,9 @@ class ApiController extends AbstractController
           if(!empty($content))
          {
             $tabd = json_decode($content, true) ;
+            dump($tabd);
             $p = new Participantevenement($tabd);
+            dump($p);
             $monPdo -> setParticipation($p);
          }            
           return new JsonResponse(Response::HTTP_ACCEPTED);

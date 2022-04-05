@@ -3,6 +3,7 @@
 namespace App\Repository;
 
 use App\Entity\Hackathon;
+use App\Entity\Participation;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\ORM\Query\Expr\Join;
 use Doctrine\Persistence\ManagerRegistry;
@@ -20,35 +21,6 @@ class HackathonRepository extends ServiceEntityRepository
         parent::__construct($registry, Hackathon::class);
     }
 
-    // /**
-    //  * @return Hackathon[] Returns an array of Hackathon objects
-    //  */
-    /*
-    public function findByExampleField($value)
-    {
-        return $this->createQueryBuilder('h')
-            ->andWhere('h.exampleField = :val')
-            ->setParameter('val', $value)
-            ->orderBy('h.id', 'ASC')
-            ->setMaxResults(10)
-            ->getQuery()
-            ->getResult()
-        ;
-    }
-    */
-
-    /*
-    public function findOneBySomeField($value): ?Hackathon
-    {
-        return $this->createQueryBuilder('h')
-            ->andWhere('h.exampleField = :val')
-            ->setParameter('val', $value)
-            ->getQuery()
-            ->getOneOrNullResult()
-        ;
-    }
-    */
-
     public function findAll()
     {
         return $this->createQueryBuilder('s')
@@ -56,19 +28,14 @@ class HackathonRepository extends ServiceEntityRepository
             ->getResult();;
     }
 
-    public function findByNbPlaces($id): ?Hackathon
+    public function findByNbPlaces($id)
     {
-        // return $this->createQuery('SELECT (hackathon.NbPlaces - COUNT(IdParticipation))  FROM participation 
-        // INNER JOIN participation ON participation.IdHackathon = hackathon.IdHackathon
-        // WHERE hackathon.IdHackathon = ' . $id)
-        //     ->getResult();
-
             return $this->createQueryBuilder('h')
-            ->select('h.NbPlaces - COUNT(p.IdParticipation)')
-            ->innerJoin(Participation::class, 'p', Join::WITH, 'h.IdHackathon = p.IdHackathon')
-            ->andWhere('h.IdHackathon = :id')
+            ->select('(h.nbplaces - COUNT(p.idparticipation))')
+            ->innerJoin(Participation::class, 'p', Join::WITH, 'h.idhackathon = p.idhackathon')
+            ->andWhere('h.idhackathon = :id')
             ->setParameter('id', $id)
             ->getQuery()
-            ->getResult();
+            ->getSingleScalarResult();
     }
 }
