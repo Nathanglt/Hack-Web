@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Favori;
+use App\Entity\Hackathon;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -40,12 +41,12 @@ class HomeController extends AbstractController
     }
 
     /**
-     * @Route("/favori", name="favori")
+     * @Route("/favori", name="vfavori")
      */
     public function getlesfavoris(): Response
     {
-        $repository = $this->getDoctrine()->getRepository(Favori::class);
-        $favori = $repository->findAll();
-        return $this->render('home/viewFavori.html.twig', ['lesfavoris'=>$favori]);
+        $repository = $this->getDoctrine()->getRepository(Hackathon::class);
+        $f = $repository->findByFavori($this->getUser());
+        return $this->render('home/Favori.html.twig', ['lesfavoris'=>$f]);
     }
 }

@@ -2,6 +2,7 @@
 
 namespace App\Repository;
 
+use App\Entity\Favori;
 use App\Entity\Hackathon;
 use App\Entity\Participation;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
@@ -37,5 +38,16 @@ class HackathonRepository extends ServiceEntityRepository
             ->setParameter('id', $id)
             ->getQuery()
             ->getSingleScalarResult();
+    }
+
+    public function findByFavori($id)
+    {
+            return $this->createQueryBuilder('h')
+            // ->select('h.idhackathon')
+            ->innerJoin(Favori::class, 'f', Join::WITH, 'h.idhackathon = f.idhackathon')
+            ->andWhere('f.idparticipant = :id')
+            ->setParameter('id', $id)
+            ->getQuery()
+            ->getResult();
     }
 }

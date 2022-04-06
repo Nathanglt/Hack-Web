@@ -27,5 +27,6 @@ class FavoriRepository extends ServiceEntityRepository
             ->getResult();;
     }
 
-//requete sql à faire
+
+   
 }
