@@ -8,6 +8,7 @@ use App\Entity\Participant;
 use App\Entity\Participation;
 use App\Repository\HackathonRepository;
 use App\Form\RegisterType;
+use SebastianBergmann\Environment\Console;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Request;
@@ -43,19 +44,26 @@ class CreationController extends AbstractController
      */
     public function inscriptionH($id): Response
     {
-        
+        $hackathon = $this->getDoctrine()->getRepository(Hackathon::class)->find($id);
         $participation = new Participation();
         $participation->setIdhackathon($this->getDoctrine()->getRepository(Hackathon::class)->find($id));
         $participation->setIdparticipant($this->getUser());
         $participation->setDateinscription(new \DateTime(date("D, d M Y H:i:s")));
         $entityManager = $this->getDoctrine()->getManager();
-        $entityManager->persist($participation);
-        $entityManager->flush();
 
-        $repository = $this->getDoctrine()->getRepository(Hackathon::class);
-        $nb = $repository->findByNbPlaces($id);
-        var_dump($nb);
-        return $this->render('home/index.html.twig');
+        if ($hackathon->getDatelimite() <= date("D, d M Y H:i:s")) {
+
+            $entityManager->persist($participation);
+            $entityManager->flush();
+            $repository = $this->getDoctrine()->getRepository(Hackathon::class);
+            $repository->findByNbPlaces($id);
+            echo ('<div class="alert alert-success" role="alert">Inscription effectuée</div>');
+            return $this->render('home/index.html.twig');
+        } else {
+           
+            echo ('<div class="alert alert-danger" role="alert">Inscription impossible car la date limite est dépassée</div>');
+            return $this->render('home/index.html.twig');
+        }
     }
 
     /**
@@ -70,9 +78,6 @@ class CreationController extends AbstractController
         $entityManager->persist($favori);
         $entityManager->flush();
 
-        return $this->render('home/index.html.twig', [
-
-        ]);
-        
+        return $this->render('home/index.html.twig', []);
     }
 }

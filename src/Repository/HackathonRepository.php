@@ -50,4 +50,6 @@ class HackathonRepository extends ServiceEntityRepository
             ->getQuery()
             ->getResult();
     }
+
+
 }
