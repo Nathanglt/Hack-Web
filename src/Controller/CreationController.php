@@ -6,8 +6,10 @@ use App\Entity\Favori;
 use App\Entity\Hackathon;
 use App\Entity\Participant;
 use App\Entity\Participation;
+use App\Service\PdoHackathons;
 use App\Repository\HackathonRepository;
 use App\Form\RegisterType;
+use App\Repository\FavoriRepository;
 use SebastianBergmann\Environment\Console;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
@@ -77,7 +79,23 @@ class CreationController extends AbstractController
         $entityManager = $this->getDoctrine()->getManager();
         $entityManager->persist($favori);
         $entityManager->flush();
+        echo ('<div class="alert alert-success" role="alert">Favori ajouté</div>');
 
         return $this->render('home/index.html.twig', []);
     }
+
+     /**
+     * @Route("delfavori/{id}", name="delfavori")
+     */
+    public function delfavori($id,PdoHackathons $monPdo): Response
+    {
+    $iduser = 1;
+    // $iduser = $this->getUser();
+    $monPdo -> delFavori($id,$iduser);
+    echo ('<div class="alert alert-danger" role="alert">Favori supprimer</div>');
+    return $this->render('home/index.html.twig');
+    }
+
+
+
 }
