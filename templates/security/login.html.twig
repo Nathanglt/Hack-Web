@@ -18,9 +18,9 @@
 			width: 400px;
 			padding: 40px;
 			transform: translate(-50%, -50%);
-			background: grey;
+			background: #011F26;
 			box-sizing: border-box;
-			box-shadow: 0 15px 25px rgba(0, 0, 0, .6);
+			box-shadow: 0 15px 25px rgba(0, 0, 0, 0.6);
 			border-radius: 10px;
 		}
 
@@ -61,142 +61,110 @@
 		.login-box .user-box input:valid ~ label {
 			top: -20px;
 			left: 0;
-			color: #03e9f4;
-			font-size: 12px;
-		}
-
-		.login-box form a {
-			position: relative;
-			display: inline-block;
-			padding: 10px 20px;
-			color: #03e9f4;
-			font-size: 16px;
-			text-decoration: none;
-			text-transform: uppercase;
-			overflow: hidden;
-			transition: 0.5s;
-			margin-top: 40px;
-			letter-spacing: 4px
-		}
-
-		.login-box a:hover {
-			background: #03e9f4;
 			color: #fff;
-			border-radius: 5px;
-			box-shadow: 0 0 5px #03e9f4, 0 0 25px #03e9f4, 0 0 50px #03e9f4, 0 0 100px #03e9f4;
+			font-size: 15px;
 		}
 
-		.login-box a span {
-			position: absolute;
-			display: block;
+		.btn {
+			margin: 1rem;
+
+			cursor: pointer;
+			overflow: visible;
+
+			text-decoration: none;
+			font-family: ‘Metrophobic’, Arial, serif;
+			font-weight: 400;
+			font-size: 18px;
+			color: #fff;
+			-webkit-transition: all 400ms ease-in-out;
+			-moz-transition: all 400ms ease-in-out;
+			transition: all 400ms ease-in-out;
 		}
 
-		.login-box a span:nth-child(1) {
-			top: 0;
-			left: -100%;
-			width: 100%;
-			height: 2px;
-			background: linear-gradient(90deg, transparent, #03e9f4);
-			animation: btn-anim1 1s linear infinite;
+		.btn.btn-bg-transparent {
+			padding: 1em 2em;
+			background: transparent;
+			border: 2px solid #fff;
+			border-radius: 6px;
+			line-height: 1;
 		}
 
-		@keyframes btn-anim1 {
-			0% {
-				left: -100%;
-			}
-			50%,
-			100% {
-				left: 100%;
-			}
+		.btn.btn-bg-transparent:hover {
+			border: 1px solid #EBF0F1;
+			color: #8b9da9;
+
+			background: #ecf0f1;
+			background: -webkit-linear-gradient(-45deg, #ecf0f1 0%, #f6f6f6 47%, #ededed 100%);
+			background: -moz-linear-gradient(-45deg, #ecf0f1 0%, #f6f6f6 47%, #ededed 100%);
+			background: -o-linear-gradient(-45deg, #ecf0f1 0%, #f6f6f6 47%, #ededed 100%);
+			background: linear-gradient(-45deg, #ecf0f1 0%, #f6f6f6 47%, #ededed 100%);
+			filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ecf0f1', endColorstr='#ededed',GradientType=1);
+			-webkit-transform: scale(1.2);
+			-moz-transform: scale(1.2);
+			-ms-transform: scale(1.2);
+			-o-transform: scale(1.2);
+			transform: scale(1.2);
 		}
 
-		.login-box a span:nth-child(2) {
-			top: -100%;
-			right: 0;
-			width: 2px;
-			height: 100%;
-			background: linear-gradient(180deg, transparent, #03e9f4);
-			animation: btn-anim2 1s linear infinite;
-			animation-delay: 0.25s
+		.btn.btn-bg-color {
+			padding: 1em 2em;
+			border: 2px solid #EBF0F1;
+			border-radius: 6px;
+
+			line-height: 1;
+			color: #8b9da9;
+
+			background: #ecf0f1;
+			background: -webkit-linear-gradient(-45deg, #ecf0f1 0%, #f6f6f6 47%, #ededed 100%);
+			background: -moz-linear-gradient(-45deg, #ecf0f1 0%, #f6f6f6 47%, #ededed 100%);
+			background: -o-linear-gradient(-45deg, #ecf0f1 0%, #f6f6f6 47%, #ededed 100%);
+			background: linear-gradient(-45deg, #ecf0f1 0%, #f6f6f6 47%, #ededed 100%);
+			filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ecf0f1', endColorstr='#ededed',GradientType=1);
 		}
 
-		@keyframes btn-anim2 {
-			0% {
-				top: -100%;
-			}
-			50%,
-			100% {
-				top: 100%;
-			}
+		.btn.btn-bg-color:hover {
+			background: transparent;
+			border: 2px solid #fff;
+			color: #fff;
+			-webkit-transform: scale(1.2);
+			-moz-transform: scale(1.2);
+			-ms-transform: scale(1.2);
+			-o-transform: scale(1.2);
+			transform: scale(1.2);
 		}
 
-		.login-box a span:nth-child(3) {
-			bottom: 0;
-			right: -100%;
-			width: 100%;
-			height: 2px;
-			background: linear-gradient(270deg, transparent, #03e9f4);
-			animation: btn-anim3 1s linear infinite;
-			animation-delay: 0.5s
-		}
 
-		@keyframes btn-anim3 {
-			0% {
-				right: -100%;
-			}
-			50%,
-			100% {
-				right: 100%;
-			}
-		}
-
-		.login-box a span:nth-child(4) {
-			bottom: -100%;
-			left: 0;
-			width: 2px;
-			height: 100%;
-			background: linear-gradient(360deg, transparent, #03e9f4);
-			animation: btn-anim4 1s linear infinite;
-			animation-delay: 0.75s
-		}
-
-		@keyframes btn-anim4 {
-			0% {
-				bottom: -100%;
-			}
-			50%,
-			100% {
-				bottom: 100%;
-			}
-		}
+	}
 	</style>
-		<div class="login-box">
-			<h2>Login</h2>
-			<form action="{{ path('security_login') }}" method="post">
-				<div class="user-box">
-					<input type="text" class="form-control" id="login" name="_username" value="{{ last_username }}">
-					<label>Username</label>
-				</div>
-				<div class="user-box">
-					<input type="password" class="form-control" id="password" name="_password">
-					<label>Password</label>
-				</div>
-				<button type="submit" class="btn btn-outline-secondary">Se connecter</button>
-			</form>
-		</div>
+	<div class="login-box">
+		<h2>Login</h2>
+		<form action="{{ path('security_login') }}" method="post">
+			<div class="user-box">
+				<input type="text" class="form-control" id="login" name="_username" value="{{ last_username }}">
+				<label>Mail</label>
+			</div>
+			<div class="user-box">
+				<input type="password" class="form-control" id="password" name="_password">
+				<label>Mot de passe</label>
+			</div>
+			<button type="submit" class="d-ib p-r btn btn-bg-color">Se connecter</button>
+		</form>
+	</div>
+
+	
 
 
-		{# <label for="login">Login:</label>
-				<input type="text" class="form-control" id="login" name="_username" value="{{ last_username }}"/>
-		
-				<label for="password">Password:</label>
-				<input type="password" class="form-control" id="password" name="_password"/>
-				<button type="submit">login</button>
-		
-				<button type="submit" class="btn btn-outline-secondary">Se connecter</button>
-			</form>
-			<a type="button" class="btn btn-outline-primary" href="{{path('creationCompte')}}">
-				Inscription
-			</a> #}
+	{# <label for="login">Login:</label>
+					<input type="text" class="form-control" id="login" name="_username" value="{{ last_username }}"/>
+			
+					<label for="password">Password:</label>
+					<input type="password" class="form-control" id="password" name="_password"/>
+					<button type="submit">login</button>
+			
+					<button type="submit" class="btn btn-outline-secondary">Se connecter</button>
+				</form>
+				<a type="button" class="btn btn-outline-primary" href="{{path('creationCompte')}}">
+					Inscription
+				</a> #}
 
-	{% endblock %}
+{% endblock %}

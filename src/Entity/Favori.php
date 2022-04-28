@@ -22,16 +22,22 @@ class Favori
     private $idfavori;
 
     /**
-     * @var int
+     * @var \Hackathon
      *
-     * @ORM\Column(name="IdHackathon", type="integer", nullable=false)
+     * @ORM\ManyToOne(targetEntity="Hackathon")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="IdHackathon", referencedColumnName="IdHackathon")
+     * })
      */
     private $idhackathon;
 
     /**
-     * @var int
+     * @var \Participant
      *
-     * @ORM\Column(name="IdParticipant", type="integer", nullable=false)
+     * @ORM\ManyToOne(targetEntity="Participant")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="IdParticipant", referencedColumnName="IdParticipant")
+     * })
      */
     private $idparticipant;
 
@@ -40,24 +46,24 @@ class Favori
         return $this->idfavori;
     }
 
-    public function getIdhackathon(): ?int
+    public function getIdhackathon(): ?Hackathon
     {
         return $this->idhackathon;
     }
 
-    public function setIdhackathon(int $idhackathon): self
+    public function setIdhackathon(?Hackathon $idhackathon): self
     {
         $this->idhackathon = $idhackathon;
 
         return $this;
     }
 
-    public function getIdparticipant(): ?int
+    public function getIdparticipant(): ?Participant
     {
         return $this->idparticipant;
     }
 
-    public function setIdparticipant(int $idparticipant): self
+    public function setIdparticipant(?Participant $idparticipant): self
     {
         $this->idparticipant = $idparticipant;
 

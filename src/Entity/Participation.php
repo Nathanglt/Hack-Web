@@ -8,7 +8,7 @@ use Doctrine\ORM\Mapping as ORM;
  * Participation
  *
  * @ORM\Table(name="participation", indexes={@ORM\Index(name="Participation_ibfk_1", columns={"IdHackathon"}), @ORM\Index(name="Participation_ibfk_2", columns={"IdParticipant"})})
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="App\Repository\ParticipationRepository")
  */
 class Participation
 {
@@ -65,24 +65,24 @@ class Participation
         return $this;
     }
 
-    public function getIdhackathon()
+    public function getIdhackathon(): ?Hackathon
     {
         return $this->idhackathon;
     }
 
-    public function setIdhackathon($idhackathon): self
+    public function setIdhackathon(?Hackathon $idhackathon): self
     {
         $this->idhackathon = $idhackathon;
 
         return $this;
     }
 
-    public function getIdparticipant()
+    public function getIdparticipant(): ?Participant
     {
         return $this->idparticipant;
     }
 
-    public function setIdparticipant($idparticipant): self
+    public function setIdparticipant(?Participant $idparticipant): self
     {
         $this->idparticipant = $idparticipant;
 

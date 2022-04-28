@@ -26,10 +26,10 @@
 		}
 	</style>
 
-	<div class="example-wrapper">
+	<div class="example-wrapper" style="text-align:center;">
 	<p align="center">
-		{{h.theme}}
-		<br><br>
+		<p style="font-size:40px; font-family: Georgia, serif;">{{h.theme}}</p>
+		<br>
 		<img class="img" src="{{h.image}}">
 		<br><br>
 		<p align="center">Date de debut : {{h.datedebut|date('d-m-Y')}}</p>
@@ -42,7 +42,10 @@
 		<p align="center">Codepostal : {{h.codepostal}}</p>
 		<p align="center">Date limite  : {{h.datelimite|date('d-m-Y')}}</p>
 		<p align="center">Nombres de places :{{h.nbplaces}}</p>
-		<p align="center" <a href="{{path('inscriptionH',{'id':h.idhackathon})}}" class="btn btn-primary"><i class="fa-solid fa-file-contract"></i> S'inscrire</a>></p>
+		<p align="center">Nombres de places restantes :{{nb}}</p>
+		{% if is_granted('IS_AUTHENTICATED_FULLY') %}					
+					<a href="{{path('inscriptionH',{'id':h.idhackathon})}}" class="btn btn-primary"><i class="fa-solid fa-pen"></i></i> S'inscrire</a>																				
+		{% endif %}
 </p>
 
 	</div>

@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * Participantevenement
  *
- * @ORM\Table(name="Participantevenement", indexes={@ORM\Index(name="ParticipantEvenement_ibfk_1", columns={"IdEvenement"})})
+ * @ORM\Table(name="participantevenement", indexes={@ORM\Index(name="ParticipantEvenement_ibfk_1", columns={"IdEvenement"})})
  * @ORM\Entity
  */
 class Participantevenement
@@ -57,6 +57,13 @@ class Participantevenement
         return $this->id;
     }
 
+    public function setId(int $id): self
+    {
+        $this->id = $id;
+
+        return $this;
+    }
+
     public function getNom(): ?string
     {
         return $this->nom;
@@ -98,12 +105,31 @@ class Participantevenement
         return $this->idevenement;
     }
 
-    public function setIdevenement($idevenement): self
+    public function setIdevenement( $idevenement): self
     {
         $this->idevenement = $idevenement;
 
         return $this;
     }
+
+    private function hydrate(array $donnees)
+    {
+  foreach ($donnees as $key => $value)
+  {
+    // On récupère le nom du setter correspondant à l'attribut.
+    $method = 'set'.ucfirst($key);
+
+    // Si le setter correspondant existe.
+    if (method_exists($this, $method))
+    {
+      // On appelle le setter.
+      $this->$method($value);
+    }
+  }
+}
+public function __construct(array $donnees){
+    $this->hydrate($donnees);
+}
 
 
 }

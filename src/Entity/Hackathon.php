@@ -8,7 +8,7 @@ use Doctrine\ORM\Mapping as ORM;
  * Hackathon
  *
  * @ORM\Table(name="hackathon")
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="App\Repository\HackathonRepository")
  */
 class Hackathon
 {
@@ -108,6 +108,13 @@ class Hackathon
     public function getIdhackathon(): ?int
     {
         return $this->idhackathon;
+    }
+
+    public function setIdhackathon($idhackathon): self
+    {
+        $this->idhackathon = $idhackathon;
+
+        return $this;
     }
 
     public function getDatedebut()
