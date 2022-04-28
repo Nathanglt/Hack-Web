@@ -12,11 +12,14 @@
 		}
 
 		.login-box {
-			position: absolute;
-			top: 50%;
-			left: 50%;
+			position: relative;
+			margin-left: 50%;
+			margin-right: 50%;
+			margin-top: 10%;
 			width: 400px;
 			padding: 40px;
+
+			text-align: center;
 			transform: translate(-50%, -50%);
 			background: #011F26;
 			box-sizing: border-box;
@@ -150,21 +153,4 @@
 			<button type="submit" class="d-ib p-r btn btn-bg-color">Se connecter</button>
 		</form>
 	</div>
-
-	
-
-
-	{# <label for="login">Login:</label>
-					<input type="text" class="form-control" id="login" name="_username" value="{{ last_username }}"/>
-			
-					<label for="password">Password:</label>
-					<input type="password" class="form-control" id="password" name="_password"/>
-					<button type="submit">login</button>
-			
-					<button type="submit" class="btn btn-outline-secondary">Se connecter</button>
-				</form>
-				<a type="button" class="btn btn-outline-primary" href="{{path('creationCompte')}}">
-					Inscription
-				</a> #}
-
 {% endblock %}

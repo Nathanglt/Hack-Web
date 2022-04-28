@@ -7,15 +7,11 @@ use App\Entity\Hackathon;
 use App\Entity\Participant;
 use App\Entity\Participation;
 use App\Service\PdoHackathons;
-use App\Repository\HackathonRepository;
 use App\Form\RegisterType;
-use App\Repository\FavoriRepository;
-use SebastianBergmann\Environment\Console;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\Mime\Message;
 
 class CreationController extends AbstractController
 {
@@ -87,8 +83,11 @@ class CreationController extends AbstractController
      /**
      * @Route("delfavori/{id}", name="delfavori")
      */
+
     public function delfavori($id,PdoHackathons $monPdo): Response
     {
+        var_dump($this->getUser());
+;    die;
     $iduser = 1;
     // $iduser = $this->getUser();
     $monPdo -> delFavori($id,$iduser);
