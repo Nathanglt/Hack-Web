@@ -27,14 +27,13 @@ class FavoriRepository extends ServiceEntityRepository
             ->getResult();;
     }
 
-    public function findByDelFavori($idhack,$idparti)
+    public function findByFavori($idH,$idF)
     {
             return $this->createQueryBuilder('f')
             ->delete()
-            ->andWhere('f.idparticipant = :idparticipant')
-            ->andWhere('f.idhackathon = :idhackathon')
-            ->setParameter('idhackathon', $idhack)
-            ->setParameter('idparticipant', $idparti)
+            ->where('f.idhackathon = :idH and f.idparticipant = :idF')
+            ->setParameter('idH', $idH)
+            ->setParameter('idF', $idF)
             ->getQuery()
             ->getResult();
     }
