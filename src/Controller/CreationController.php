@@ -8,7 +8,6 @@ use App\Entity\Hackathon;
 use App\Entity\Participant;
 use App\Entity\Participation;
 use App\Service\PdoHackathons;
-use App\Repository\HackathonRepository;
 use App\Form\RegisterType;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
@@ -92,6 +91,7 @@ class CreationController extends AbstractController
     /**
      * @Route("delfavori/{id}", name="delfavori")
      */
+
     public function delfavori($id): Response
     {
         dump($id);
@@ -103,5 +103,6 @@ class CreationController extends AbstractController
         $em->flush();
         echo ('<div class="alert alert-danger" role="alert">Favori supprimer</div>');
         return $this->render('home/index.html.twig');
+
     }
 }
