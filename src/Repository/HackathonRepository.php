@@ -43,12 +43,25 @@ class HackathonRepository extends ServiceEntityRepository
     public function findByFavori($id)
     {
             return $this->createQueryBuilder('h')
-            // ->select('h.idhackathon')
+            ->select('h.image,h.theme,f.idfavori')
             ->innerJoin(Favori::class, 'f', Join::WITH, 'h.idhackathon = f.idhackathon')
             ->andWhere('f.idparticipant = :id')
             ->setParameter('id', $id)
             ->getQuery()
             ->getResult();
+
+    }
+
+    public function findByVerifFavori($idP,$idH)
+    {
+            return $this->createQueryBuilder('h')
+            ->innerJoin(Favori::class, 'f', Join::WITH, 'h.idhackathon = f.idhackathon')
+            ->andWhere('f.idparticipant = :idP and h.idhackathon = :idH')
+            ->setParameter('idP', $idP)
+            ->setParameter('idH', $idH)
+            ->getQuery()
+            ->getResult();
+
     }
 
 

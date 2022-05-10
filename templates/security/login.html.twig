@@ -12,10 +12,11 @@
 		}
 
 		.login-box {
+			margin-top:15%;
 			position: relative;
-			margin-left: 50%;
-			margin-right: 50%;
-			margin-top: 10%;
+			top: 50%;
+			left: 50%;
+
 			width: 400px;
 			padding: 40px;
 
@@ -28,7 +29,7 @@
 		}
 
 		.login-box h2 {
-			margin: 0 0 30px;
+			margin: 0 0 50px;
 			padding: 0;
 			color: #fff;
 			text-align: center;
@@ -62,7 +63,7 @@
 
 		.login-box .user-box input:focus ~ label,
 		.login-box .user-box input:valid ~ label {
-			top: -20px;
+			top: -37px;
 			left: 0;
 			color: #fff;
 			font-size: 15px;
@@ -151,6 +152,7 @@
 				<label>Mot de passe</label>
 			</div>
 			<button type="submit" class="d-ib p-r btn btn-bg-color">Se connecter</button>
+			<a href="{{path('register')}}" class="link-light">S'inscrire</a>
 		</form>
 	</div>
 {% endblock %}

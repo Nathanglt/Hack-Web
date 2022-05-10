@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Repository\FavoriRepository;
 use App\Entity\Favori;
 use App\Entity\Hackathon;
 use App\Entity\Participant;
@@ -46,10 +47,11 @@ class CreationController extends AbstractController
         $participation = new Participation();
         $participation->setIdhackathon($this->getDoctrine()->getRepository(Hackathon::class)->find($id));
         $participation->setIdparticipant($this->getUser());
-        $participation->setDateinscription(new \DateTime(date("D, d M Y H:i:s")));
+        $participation->setDateinscription(new \DateTime(date("Y-m-d H:i:s")));
         $entityManager = $this->getDoctrine()->getManager();
 
-        if ($hackathon->getDatelimite() <= date("D, d M Y H:i:s")) {
+
+        if ($hackathon->getDatelimite() >= date("Y-m-d H:i:s")) {
 
             $entityManager->persist($participation);
             $entityManager->flush();
@@ -58,7 +60,7 @@ class CreationController extends AbstractController
             echo ('<div class="alert alert-success" role="alert">Inscription effectuée</div>');
             return $this->render('home/index.html.twig');
         } else {
-           
+
             echo ('<div class="alert alert-danger" role="alert">Inscription impossible car la date limite est dépassée</div>');
             return $this->render('home/index.html.twig');
         }
@@ -73,28 +75,34 @@ class CreationController extends AbstractController
         $favori->setIdhackathon($this->getDoctrine()->getRepository(Hackathon::class)->find($id));
         $favori->setIdparticipant($this->getUser());
         $entityManager = $this->getDoctrine()->getManager();
-        $entityManager->persist($favori);
-        $entityManager->flush();
-        echo ('<div class="alert alert-success" role="alert">Favori ajouté</div>');
-
-        return $this->render('home/index.html.twig', []);
+        $veriffav = $this->getDoctrine()->getRepository(Hackathon::class)->findByVerifFavori($this->getUser(), $id);
+        dump($veriffav);
+        if ($veriffav == []) {
+            $entityManager->persist($favori);
+            $entityManager->flush();
+            echo ('<div class="alert alert-success" role="alert">Favori ajouté</div>');
+            return $this->render('home/index.html.twig', []);
+        } else {
+            echo ('<div class="alert alert-warning" role="alert">Favori deja ajouté</div>');
+            return $this->render('home/index.html.twig', []);
+        }
     }
 
-     /**
+    /**
      * @Route("delfavori/{id}", name="delfavori")
      */
 
-    public function delfavori($id,PdoHackathons $monPdo): Response
+    public function delfavori($id): Response
     {
-        var_dump($this->getUser());
-;    die;
-    $iduser = 1;
-    // $iduser = $this->getUser();
-    $monPdo -> delFavori($id,$iduser);
-    echo ('<div class="alert alert-danger" role="alert">Favori supprimer</div>');
-    return $this->render('home/index.html.twig');
+        dump($id);
+        $repository = $this->getDoctrine()->getRepository(Favori::class);
+        $em = $this->getDoctrine()->getManager();
+        $leFavori = $repository->find($id);
+        dump($leFavori);
+        $em->remove($leFavori);
+        $em->flush();
+        echo ('<div class="alert alert-danger" role="alert">Favori supprimer</div>');
+        return $this->render('home/index.html.twig');
+
     }
-
-
-
 }

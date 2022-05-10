@@ -9,15 +9,28 @@
 </style>
 
 <div class="container">
+    <center>
+   
+    <div style="font-size: 2em;font-weight: bold;margin-top:3%;margin-bottom:3%;">Formulaire d'inscription</div>
+ 
     {{form_start(monForm)}}
+    <br>
   {{form_row(monForm.nom)}}
+    <br>
 {{form_row(monForm.prenom)}}
+  <br>
 {{form_row(monForm.mail)}}
+  <br>
 {{form_row(monForm.telephone)}}
+  <br>
 {{form_row(monForm.datedenaissance)}}
+  <br>
 {{form_row(monForm.lienportfolio)}}
+  <br>
 {{form_row(monForm.password)}}
-<input type="submit" value="sauvegarder">
+  <br>
+<input type="submit" value="S'inscrire">
     {{form_end(monForm)}}
+     </center>
 </div>
 {% endblock %}
