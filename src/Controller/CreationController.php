@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Repository\FavoriRepository;
 use App\Entity\Favori;
 use App\Entity\Hackathon;
 use App\Entity\Participant;
@@ -9,13 +10,10 @@ use App\Entity\Participation;
 use App\Service\PdoHackathons;
 use App\Repository\HackathonRepository;
 use App\Form\RegisterType;
-use App\Repository\FavoriRepository;
-use SebastianBergmann\Environment\Console;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\Mime\Message;
 
 class CreationController extends AbstractController
 {
@@ -78,11 +76,17 @@ class CreationController extends AbstractController
         $favori->setIdhackathon($this->getDoctrine()->getRepository(Hackathon::class)->find($id));
         $favori->setIdparticipant($this->getUser());
         $entityManager = $this->getDoctrine()->getManager();
-        $entityManager->persist($favori);
-        $entityManager->flush();
-        echo ('<div class="alert alert-success" role="alert">Favori ajouté</div>');
-
-        return $this->render('home/index.html.twig', []);
+        $veriffav = $this->getDoctrine()->getRepository(Hackathon::class)->findByVerifFavori($this->getUser(), $id);
+        dump($veriffav);
+        if ($veriffav == []) {
+            $entityManager->persist($favori);
+            $entityManager->flush();
+            echo ('<div class="alert alert-success" role="alert">Favori ajouté</div>');
+            return $this->render('home/index.html.twig', []);
+        } else {
+            echo ('<div class="alert alert-warning" role="alert">Favori deja ajouté</div>');
+            return $this->render('home/index.html.twig', []);
+        }
     }
 
     /**
@@ -90,6 +94,7 @@ class CreationController extends AbstractController
      */
     public function delfavori($id): Response
     {
+        dump($id);
         $repository = $this->getDoctrine()->getRepository(Favori::class);
         $em = $this->getDoctrine()->getManager();
         $leFavori = $repository->find($id);

@@ -4,8 +4,8 @@ namespace App\Repository;
 
 use App\Entity\Favori;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
-use Doctrine\ORM\Query\Expr\Join;
 use Doctrine\Persistence\ManagerRegistry;
+
 
 /**
  * @method Favori|null find($id, $lockMode = null, $lockVersion = null)
@@ -27,18 +27,13 @@ class FavoriRepository extends ServiceEntityRepository
             ->getResult();;
     }
 
-    public function findByFavori($idH,$idF)
+    public function findByFavoriTest($idP, $idH)
     {
-            return $this->createQueryBuilder('f')
-            ->delete()
-            ->where('f.idhackathon = :idH and f.idparticipant = :idF')
+        return $this->createQueryBuilder('f')
+            ->andWhere('f.idparticipant = :idP and f.idhackathon = :idH')
+            ->setParameter('idP', $idP)
             ->setParameter('idH', $idH)
-            ->setParameter('idF', $idF)
             ->getQuery()
             ->getResult();
     }
-
-
-
-   
 }
