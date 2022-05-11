@@ -8,8 +8,8 @@ use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Request;
 use App\Form\RegisterType;
-
-
+use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasher;
+use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 
 class SecurityController extends AbstractController
 {
@@ -41,12 +41,18 @@ class SecurityController extends AbstractController
       /**
      * @Route("/register", name="register")
      */
-    public function register(Request $request): Response
+    public function register(Request $request, UserPasswordHasherInterface $userPasswordHasherInterface): Response
     {
         $participant = new Participant();
         $form=$this->createForm(RegisterType::class, $participant);
         $form->handleRequest($request);
         if($form->isSubmitted() && $form->isValid()){
+            $hashedPassword = $userPasswordHasherInterface->hashPassword(
+                $participant,
+                dump($form["password"]->getData())
+                // dump($request->request->get('password'))
+            );
+            $participant->setPassword($hashedPassword);    
             $em = $this->getDoctrine()->getManager();
             $em->persist($participant);
             $em->flush();  
