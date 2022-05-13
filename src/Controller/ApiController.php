@@ -16,7 +16,7 @@ use Symfony\Component\VarDumper\VarDumper;
 class ApiController extends AbstractController
 {
 
-//permet de récupérer les hackathons pour les chargés dans un tableau json
+//permet de récupérer les hackathons pour les chargés dans un tableau json sur la route /apiH
     /**
      * @Route("/apiH", name="apiH", methods="GET")
      */
@@ -44,7 +44,7 @@ class ApiController extends AbstractController
         return new JsonResponse($tabJson);
     }
 
-
+//permet de récupérer les evenements pour les chargés dans un tableau json sur la route /apiE
     /**
      * @Route("/apiE", name="apiE", methods="GET")
      */
@@ -65,6 +65,7 @@ class ApiController extends AbstractController
         }
         return new JsonResponse($tabJson);
     }
+
 
 /**
      * @Route("/apiE/{id}", name="apiE_id", methods="GET")
@@ -92,6 +93,8 @@ class ApiController extends AbstractController
     }
     return new JsonResponse($tabJson);
 }
+
+//permet enregistrer une participation à un évènement que l'application mobile nous envoie
 
  /**
       * @Route("/apiE/participant", name="participant", methods="POST")

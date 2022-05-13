@@ -17,25 +17,7 @@ use Symfony\Component\HttpFoundation\Response;
 class CreationController extends AbstractController
 {
 
-    /**
-     * @Route("/creationCompte", name="creationCompte")
-     */
-    public function add(Request $request): Response
-    {
-        $unparticipant = new Participant();
-        $form = $this->createForm(RegisterType::class, $unparticipant);
-        $form->handleRequest($request);
-        if ($form->isSubmitted() && $form->isValid()) {
-            $e = $this->getDoctrine()->getManager();
-            $e->persist($unparticipant);
-            $e->flush();
-            return $this->redirectToRoute('hackathon');
-        }
 
-        return $this->render('security/register.html.twig', [
-            'monForm' => $form->createView(),
-        ]);
-    }
 
 
     /**
@@ -51,13 +33,13 @@ class CreationController extends AbstractController
         $entityManager = $this->getDoctrine()->getManager();
 
 
-        if ($hackathon->getDatelimite() >= date("Y-m-d H:i:s")) {
+        if ($hackathon->getDatelimite() >= date("Y-m-d H:i:s")) { //teste si la date du hackathon sur lequel l'utiisateur veux s'inscrire n'est pas dépassée
 
             $entityManager->persist($participation);
             $entityManager->flush();
             $repository = $this->getDoctrine()->getRepository(Hackathon::class);
             $repository->findByNbPlaces($id);
-            echo ('<div class="alert alert-success" role="alert">Inscription effectuée</div>');
+            echo ('<div class="alert alert-success" role="alert">Inscription effectuée</div>'); //affiche un message sur la page du navigateur
             return $this->render('home/index.html.twig');
         } else {
 
@@ -76,8 +58,7 @@ class CreationController extends AbstractController
         $favori->setIdparticipant($this->getUser());
         $entityManager = $this->getDoctrine()->getManager();
         $veriffav = $this->getDoctrine()->getRepository(Hackathon::class)->findByVerifFavori($this->getUser(), $id);
-        dump($veriffav);
-        if ($veriffav == []) {
+        if ($veriffav == []) { //vérifie que le favori n'a pas déja été ajouté par l'utilisateur grâce à une comparaison avec une requete sql qui retour un tableau vide si il n'a pas été ajouté
             $entityManager->persist($favori);
             $entityManager->flush();
             echo ('<div class="alert alert-success" role="alert">Favori ajouté</div>');
@@ -99,7 +80,7 @@ class CreationController extends AbstractController
         $em = $this->getDoctrine()->getManager();
         $leFavori = $repository->find($id);
         dump($leFavori);
-        $em->remove($leFavori);
+        $em->remove($leFavori); //supprime le favori dont l'id = $id grâce à la fonction remove de doctrine
         $em->flush();
         echo ('<div class="alert alert-danger" role="alert">Favori supprimer</div>');
         return $this->render('home/index.html.twig');

@@ -27,7 +27,7 @@ class FavoriRepository extends ServiceEntityRepository
             ->getResult();;
     }
 
-    public function findByFavoriTest($idP, $idH)
+    public function findByFavoriTest($idP, $idH) 
     {
         return $this->createQueryBuilder('f')
             ->andWhere('f.idparticipant = :idP and f.idhackathon = :idH')

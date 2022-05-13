@@ -15,7 +15,7 @@ class PdoHackathons
 	{
 
 		$serveur = 'mysql:host=192.168.4.1:3306';
-		$bdd = 'dbname=bdaabderrahmann7';
+		$bdd = 'dbname=bdaabderrahmann7'; // connetion à la base de données pour le pdo
 		$user = 'sqlaabderrahmann';
 		$mdp = 'savary';
 		PdoHackathons::$monPdo = new PDO(
@@ -104,11 +104,5 @@ class PdoHackathons
 		$res->bindValue(':idP', $idP);
 		$res->execute();
 	}
-	public function selectFav($idH)
-	{
-		$req = "SELECT DISTINCT favori.IdParticipant FROM `favori` WHERE favori.IdHackathon = :idH";
-		$res = PdoHackathons::$monPdo->prepare($req);
-		$res->bindValue(':idH', $idH);
-		$res->execute();
-	}
+
 }
