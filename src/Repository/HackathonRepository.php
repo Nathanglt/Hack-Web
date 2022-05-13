@@ -29,7 +29,7 @@ class HackathonRepository extends ServiceEntityRepository
             ->getResult();;
     }
 
-    public function findByNbPlaces($id)
+    public function findByNbPlaces($id) //calcule le nombre de places restantes d'un hackathon
     {
             return $this->createQueryBuilder('h')
             ->select('(h.nbplaces - COUNT(p.idparticipation))')
@@ -52,7 +52,7 @@ class HackathonRepository extends ServiceEntityRepository
 
     }
 
-    public function findByVerifFavori($idP,$idH)
+    public function findByVerifFavori($idP,$idH) //requete sql qui teste si le hackathon $idH est deja en favori ,retourne un tableau vide ou le hackathon en entier
     {
             return $this->createQueryBuilder('h')
             ->innerJoin(Favori::class, 'f', Join::WITH, 'h.idhackathon = f.idhackathon')

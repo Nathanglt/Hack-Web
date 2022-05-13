@@ -21,7 +21,7 @@
 	</style>
 	
 	<div class="example-wrapper">
-		{% for h in leshackathons %}
+		 {% for h in leshackathons %} {# boucle qui permet d'afficher les hackathons #}
 			<div class="card">
 				<img src={{h.image}} class="card-img-top">
 				<div class="card-body">
@@ -29,7 +29,7 @@
 					<a href="{{path('unHackathon',{'id':h.idhackathon})}}" class="btn btn-primary">
 						<i class="fa-solid fa-circle-info"></i>
 						Détails</a>
-					{% if is_granted('IS_AUTHENTICATED_FULLY') %}
+					{% if is_granted('IS_AUTHENTICATED_FULLY') %} {# vérifie si l'utilisateur est connecté et affiche ou non l'option ajouter en favori #}
 						<a href="{{path('favori',{'id':h.idhackathon})}}" postion="right">
 							<i class="fa-solid fa-heart"></i>Ajouter en favoris</a>
 					{% endif %}

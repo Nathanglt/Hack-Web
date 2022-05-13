@@ -38,6 +38,7 @@ class SecurityController extends AbstractController
         throw new \Exception('Don\'t forget to activate logout in security.yaml');
     }
 
+        //route qui permet de créer le form d'inscription
       /**
      * @Route("/register", name="register")
      */
