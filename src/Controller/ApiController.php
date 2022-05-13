@@ -15,6 +15,8 @@ use Symfony\Component\VarDumper\VarDumper;
 
 class ApiController extends AbstractController
 {
+
+//permet de récupérer les hackathons pour les chargés dans un tableau json
     /**
      * @Route("/apiH", name="apiH", methods="GET")
      */

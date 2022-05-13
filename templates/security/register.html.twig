@@ -7,6 +7,9 @@
     .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
     .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
 </style>
+{% block javascripts %}
+<script type="text/javascript" src="{{asset("js/validForm.js")}}"></script>
+{% endblock %}
 
 <div class="container">
     <center>
@@ -29,7 +32,8 @@
   <br>
 {{form_row(monForm.password)}}
   <br>
-<input type="submit" value="S'inscrire">
+<span class="text-danger" id="erreur"></span>
+        <input type="submit" value="S'inscrire" id="btnSubmit" name="inscrire">
     {{form_end(monForm)}}
      </center>
 </div>

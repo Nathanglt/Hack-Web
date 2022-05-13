@@ -16,12 +16,12 @@
 		<script src="https://unpkg.com/@popperjs/core@2/dist/umd/popper.js"></script>
 		<meta charset="UTF-8">
 		<title>
-		
-			{% block title %}Hackathon 
+
+			{% block title %}Hackathon
 			{% endblock %}
 		</title>
 		{# Run `composer require symfony/webpack-encore-bundle`
-																		           and uncomment the following Encore helpers to start using Symfony UX #}
+																				           and uncomment the following Encore helpers to start using Symfony UX #}
 		{% block stylesheets %}
 			{#{{ encore_entry_link_tags('app') }}#}
 		{% endblock %}
@@ -62,16 +62,19 @@
 								Déconnexion
 							</a>
 						</li>
-						
+
 						<a class="navbar-brand" href="{{path('vfavori')}}">
 							<img src="https://ergomeuble.com/wp-content/uploads/2020/04/user.png" width="55" height="35" class="d-inline-block align-top" alt="">
-						
+
 						</a>
 
 
 					{% else %}
 
 						<li class="nav-item">
+							<a type="button" class="btn btn-outline-dark" href="{{path('register')}}">
+								S'inscrire
+							</a>
 							<a type="button" class="btn btn-outline-primary" href="{{path('security_login')}}">
 								Connexion
 							</a>
